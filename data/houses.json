@@ -1,6 +1,30 @@
 [
-  { "name": "Gryffindor", "colors": ["red","gold"], "motto": "Courage",  "img": "https://picsum.photos/200?house=gry" },
-  { "name": "Ravenclaw",  "colors": ["blue","bronze"], "motto": "Wisdom", "img": "https://picsum.photos/200?house=rav" },
-  { "name": "Hufflepuff", "colors": ["yellow","black"], "motto": "Loyalty","img": "https://picsum.photos/200?house=huf" },
-  { "name": "Slytherin",  "colors": ["green","silver"], "motto": "Ambition","img": "https://picsum.photos/200?house=sly" }
+  {
+    "name": "Gryffindor",
+    "colors": ["rojo","dorado"],
+    "motto": "Su osadía, temple y caballerosidad ponen aparte a los de Gryffindor",
+    "img": "https://picsum.photos/200?house=gry",
+    "importantWizards": ["Harry Potter", "Hermione Granger", "Albus Dumbledore"]
+  },
+  {
+    "name": "Ravenclaw",
+    "colors": ["azul","bronce"],
+    "motto": "Donde aquellos de ingenio y aprendizaje siempre encontrarán su lugar",
+    "img": "https://picsum.photos/200?house=rav",
+    "importantWizards": ["Luna Lovegood", "Cho Chang", "Rowena Ravenclaw"]
+  },
+  {
+    "name": "Hufflepuff",
+    "colors": ["amarillo","negro"],
+    "motto": "Esos perseverantes Hufflepuff de verdad no temen el trabajo pesado",
+    "img": "https://picsum.photos/200?house=huf",
+    "importantWizards": ["Cedric Diggory", "Nymphadora Tonks", "Helga Hufflepuff"]
+  },
+  {
+    "name": "Slytherin",
+    "colors": ["verde","plateado"],
+    "motto": "Aquellos astutos utilizan cualquier medio para lograr sus fines",
+    "img": "https://picsum.photos/200?house=sly",
+    "importantWizards": ["Severus Snape", "Tom Riddle", "Salazar Slytherin"]
+  }
 ]

@@ -6,11 +6,17 @@ export async function createOne(req, res, next){
 }
 
 export async function list(req, res, next){
-  try { res.json(await getAll()); }
+  try {
+    const customers = await getAll();
+    res.status(200).json(customers);
+  }
   catch (e) { next(e); }
 }
 
 export async function listProducts(req, res, next){
-  try { res.json(await getProducts(req.params.id)); }
+  try {
+    const products = await getProducts(req.params.id);
+    res.status(200).json(products);
+  }
   catch (e) { next(e); }
 }

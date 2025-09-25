@@ -9,9 +9,9 @@ const sectionNames = {
 };
 
 const sectionDescriptions = {
-  clothing: 'Descubre prendas oficiales inspiradas en las casas y personajes de Harry Potter. Diseños únicos para vestir con orgullo tu magia.',
-  accessories: 'Encuentra varitas, reliquias mágicas y objetos icónicos que complementan cualquier colección de un verdadero fan.',
-  books: 'Explora ediciones especiales y colecciones literarias del universo mágico. Ideal para revivir cada historia una y otra vez.',
+  clothing: 'Descubrí prendas oficiales inspiradas en las casas y personajes de Harry Potter. Diseños únicos para vestir con orgullo tu magia.',
+  accessories: 'Encontrá varitas, reliquias mágicas y objetos icónicos que complementan cualquier colección de un verdadero fan.',
+  books: 'Explorá ediciones especiales y colecciones literarias del universo mágico. Ideal para revivir cada historia una y otra vez.',
   collectibles: 'Artículos de edición limitada y piezas exclusivas para quienes buscan atesorar la magia de Harry Potter.',
   food: 'Delicias mágicas como grajeas de todos los sabores, ranas de chocolate y la inconfundible cerveza de mantequilla.'
 };
@@ -70,16 +70,22 @@ async function cargar() {
         </div>
       `;
     } else {
-      document.getElementById('list').innerHTML = items.map(p => `
-        <article class="product-card">
-          <h3>${p.name}</h3>
-          <img src="${p.img}" alt="${p.name}" class="product-image" />
-          <p>${p.description || ''}</p>
-          <p class="price"><strong>Precio:</strong> $${p.price}</p>
-          <p class="material"><strong>${section === 'food' ? 'Tipo' : section === 'books' ? 'Libro' : section === 'collectibles' ? 'Personaje/Objeto' : section === 'accessories' ? 'Tipo de Accesorio' : section === 'clothing' ? 'Casa/Categoría' : 'Categoría'}:</strong> ${p.category || '-'}</p>
-          <p><a href="${p.link}" target="_blank" rel="noopener" class="shop-link">Ver en tienda</a></p>
-        </article>
-      `).join('');
+      document.getElementById('list').innerHTML = `
+        <div class="row justify-content-center">
+          ${items.map(p => `
+            <div class="col-md-6 col-lg-4 mb-4">
+              <article class="product-card text-center">
+                <h3>${p.name}</h3>
+                <img src="${p.img}" alt="${p.name}" class="product-image" />
+                <p>${p.description || ''}</p>
+                <p class="price"><strong>Precio:</strong> $${p.price}</p>
+                <p class="material"><strong>${section === 'food' ? 'Tipo' : section === 'books' ? 'Libro' : section === 'collectibles' ? 'Personaje/Objeto' : section === 'accessories' ? 'Tipo de Accesorio' : section === 'clothing' ? 'Casa/Categoría' : 'Categoría'}:</strong> ${p.category || '-'}</p>
+                <p><a href="${p.link}" target="_blank" rel="noopener" class="shop-link">Ver en tienda</a></p>
+              </article>
+            </div>
+          `).join('')}
+        </div>
+      `;
     }
   } catch (error) {
     document.getElementById('list').innerHTML = `

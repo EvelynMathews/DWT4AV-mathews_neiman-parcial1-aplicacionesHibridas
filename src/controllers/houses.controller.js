@@ -1,6 +1,9 @@
 import { getHouses } from '../services/houses.service.js';
 
 export async function list(req, res, next){
-  try { res.json(await getHouses()); }
+  try {
+    const houses = await getHouses();
+    res.status(200).json(houses);
+  }
   catch (e) { next(e); }
 }
