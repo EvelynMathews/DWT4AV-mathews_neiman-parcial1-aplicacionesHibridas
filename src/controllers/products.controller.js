@@ -1,4 +1,4 @@
-import { getAll, create, update, remove, getClientPurchases } from '../services/products.service.js';
+import { getAll, create, update, remove } from '../services/products.service.js';
 
 export async function list(req, res, next){
   try {
@@ -25,15 +25,6 @@ export async function deleteOne(req, res, next){
   try {
     await remove(req.params.id);
     res.status(200).json({ message: 'Producto eliminado correctamente' });
-  }
-  catch (e) { next(e); }
-}
-
-// Productos por cada cliente - endpoint para obtener compras agrupadas
-export async function listClientPurchases(req, res, next){
-  try {
-    const purchases = await getClientPurchases();
-    res.status(200).json(purchases);
   }
   catch (e) { next(e); }
 }

@@ -14,8 +14,18 @@ export async function listCustomers() {
 
 export async function listProductsByCustomerId(customerId) {
   const db = await getDb();
-  return db.collection('Products')
-           .find({ customerId: customerId })
-           .toArray();
+  const customer = await db.collection('Customers')
+           .findOne({ _id: new ObjectId(customerId )});
+  return customer?.products || [];
 }
 
+export async function addProductToCustomer(customerId, product) {
+  const db = await getDb();
+  const customer = await db.collection('Customers')
+                           .findOneAndUpdate(
+                             { _id: new ObjectId(customerId)},
+                             { $push: { products: product } },
+                             { returnDocument: 'after' }
+                            );
+  return customer.value?.products || [];
+}

@@ -37,7 +37,18 @@ export async function create(data){
     throw Object.assign(new Error('link debe ser una URL válida'), { status: 400 });
   }
 
-  return await Model.createProduct(data);
+  if(data.customerId && typeof data.customerId !== 'string') {
+    throw Object.assign(new Error('customerId debe ser un texto'), { status: 400 });
+  }
+
+  const customer = await serviceCustomers.get(data.customerId);
+  if(!customer) {
+    throw Object.assign(new Error('customer no encontrado'), { status: 404 });
+  }
+  await Model.createProduct(data);
+
+  return data;
+
 }
 
 export async function update(id, patch){
@@ -75,9 +86,4 @@ export async function remove(id){
   const ok = await Model.deleteProduct(id);
   if(!ok) throw Object.assign(new Error('No encontrado'), { status: 404 });
   return { ok: true };
-}
-
-// Productos por cada cliente 
-export async function getClientPurchases() {
-  return await Model.getProductsByClients();
 }

@@ -24,6 +24,11 @@ export async function listProducts({ section, category }) {
   return db.collection('Products').find(q).toArray();
 }
 
+export async function getProductById(id) {
+  const db = await getDb();
+  return db.collection('Products').findOne({ _id: new ObjectId(id) });
+}
+
 export async function createProduct(doc) {
   const db = await getDb();
   const { insertedId } = await db.collection('Products').insertOne(doc);
@@ -43,56 +48,4 @@ export async function deleteProduct(id) {
   const db = await getDb();
   const res = await db.collection('Products').deleteOne({ _id: new ObjectId(id) });
   return res.deletedCount === 1;
-}
-
-// Productos por cada cliente 
-export async function getProductsByClients() {
-  const db = await getDb();
-
-  const pipeline = [
-    {
-      $lookup: {
-        from: 'Customers',
-        localField: 'customerId',
-        foreignField: '_id',
-        as: 'customerData'
-      }
-    },
-    {
-      $match: {
-        customerId: { $exists: true, $ne: null }
-      }
-    },
-    {
-      $group: {
-        _id: '$customerId',
-        customer: { $first: { $arrayElemAt: ['$customerData', 0] } },
-        products: {
-          $push: {
-            _id: '$_id',
-            name: '$name',
-            description: '$description',
-            price: '$price',
-            section: '$section',
-            category: '$category',
-            img: '$img',
-            link: '$link'
-          }
-        }
-      }
-    },
-    {
-      $project: {
-        _id: 0,
-        customerId: '$_id',
-        customerName: '$customer.name',
-        customerPhoto: '$customer.photo',
-        customerDescription: '$customer.description',
-        products: 1,
-        totalProducts: { $size: '$products' }
-      }
-    }
-  ];
-
-  return db.collection('Products').aggregate(pipeline).toArray();
 }

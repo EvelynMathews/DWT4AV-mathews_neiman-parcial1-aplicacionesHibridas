@@ -1,4 +1,4 @@
-import { create, getAll, getProducts } from '../services/customers.service.js';
+import { create, getAll, getProducts, addProduct } from '../services/customers.service.js';
 
 export async function createOne(req, res, next){
   try { res.status(201).json(await create(req.body)); }
@@ -17,6 +17,14 @@ export async function listProducts(req, res, next){
   try {
     const products = await getProducts(req.params.id);
     res.status(200).json(products);
+  }
+  catch (e) { next(e); }
+}
+
+export async function buyProduct(req, res, next){
+  try {
+    const customer = await addProduct(req.params.id, req.params.productId);
+    res.status(200).json(customer);
   }
   catch (e) { next(e); }
 }

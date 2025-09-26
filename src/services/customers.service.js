@@ -1,4 +1,5 @@
 import * as Customers from '../models/customers.model.js';
+import * as Products from '../models/products.model.js';
 
 export async function create(data){
   if(!data.name || !data.photo || !data.description) {
@@ -26,4 +27,10 @@ export async function getAll() {
 
 export async function getProducts(customerId) {
   return await Customers.listProductsByCustomerId(customerId);
+}
+
+export async function addProduct(customerId, productId){
+ const product = await Products.getProductById(productId)
+ await Customers.addProductToCustomer(customerId, product);
+ return product;
 }
