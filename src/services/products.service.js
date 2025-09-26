@@ -76,3 +76,8 @@ export async function remove(id){
   if(!ok) throw Object.assign(new Error('No encontrado'), { status: 404 });
   return { ok: true };
 }
+
+// Productos por cada cliente 
+export async function getClientPurchases() {
+  return await Model.getProductsByClients();
+}
