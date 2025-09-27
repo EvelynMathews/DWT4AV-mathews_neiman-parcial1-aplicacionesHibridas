@@ -46,7 +46,7 @@ if (!section) {
     categoryInput.placeholder = 'ej: Gryffindor, Slytherin';
   } else {
     filterLabel.textContent = 'Filtrar por categoría: ';
-    categoryInput.placeholder = 'ej: madera, metal, lana';
+    categoryInput.placeholder = 'ej: algo que tenga que ver con la sección';
   }
 }
 
@@ -66,7 +66,7 @@ async function cargar() {
         <div class="no-results">
           <h3>No se encontraron productos</h3>
           <p>No hay productos que coincidan con "${category}" en la categoría ${sectionNames[section]}.</p>
-          <p>Intenta con otros términos como: ${section === 'food' ? 'Ranas de chocolate, grajeas, etc' : section === 'books' ? 'piedra filosofal, cámara secreta, etc' : section === 'collectibles' ? 'snitch dorada, cartas, etc' : section === 'clothing' ? 'madera, metal, lana, etc' : 'varitas, llaveros, etc'}</p>
+          <p>Intenta con otros términos como: ${section === 'food' ? 'Ranas de chocolate, grajeas, etc' : section === 'books' ? 'piedra filosofal, cámara secreta, etc' : section === 'collectibles' ? 'snitch dorada, cartas, etc' : section === 'clothing' ? 'gryffindor, slytherin, etc' : 'varitas, llaveros, etc'}</p>
         </div>
       `;
     } else {
